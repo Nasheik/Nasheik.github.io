@@ -210,6 +210,7 @@ body {background-image: url("https://www.toptal.com/designers/subtlepatterns/upl
 	color: #ffffff;
     font-size: 1.6em;
     font-weight: 400;
+	margin-bottom: 2rem;
 }
 
 /* footer */
@@ -688,7 +689,7 @@ figure.effect-bubba:hover p {
 
 	.tm-img-gallery-info-container {
 		padding: 0 11px 30px;
-		max-width: 700px;
+		/* max-width: 700px; */
 		margin: 0 auto 0 0;
 	}
 

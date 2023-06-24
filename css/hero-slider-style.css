@@ -518,8 +518,8 @@ Slider navigation
   /*height: 100%;*/
 }
 .cd-slider-nav nav {
-  display: inline-block;
-  position: relative;
+  /* display: inline-block; */
+  position: fixed;
 }
 /*.cd-slider-nav .cd-marker {
   position: absolute;
