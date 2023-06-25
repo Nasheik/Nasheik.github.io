@@ -519,7 +519,9 @@ figure.effect-bubba {
     transition: transform 0.35s;
     -webkit-transform: translate3d(0,-20px,0);
     transform: translate3d(0,-20px,0);
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
+
 
 /*.cd-hero-slider .selected .cd-full-width figure.effect-ruby:hover h2.tm-figure-title {
     -webkit-transform: translate3d(0,0,0);
@@ -626,6 +628,7 @@ figure.effect-bubba:hover p {
     transition: opacity 0.35s, transform 0.35s;
     -webkit-transform: translate3d(0,20px,0) scale(1.1);
     transform: translate3d(0,20px,0) scale(1.1);
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .cd-hero-slider .selected .cd-full-width figure.effect-bubba:hover .tm-figure-title,
