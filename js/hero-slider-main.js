@@ -32,7 +32,7 @@ jQuery(document).ready(function($){
 				if( activePosition < selectedPosition) {
 					nextSlide(slidesWrapper.find('.selected'), slidesWrapper, sliderNav, selectedPosition);
 					history.pushState({page_no:selectedPosition, slideTransition:1},"") //Slide Transition 0=Prev 1=Next
-				} else {
+				} else if( activePosition > selectedPosition){
 					prevSlide(slidesWrapper.find('.selected'), slidesWrapper, sliderNav, selectedPosition);
 					history.pushState({page_no:selectedPosition, slideTransition:0},"") //Slide Transition 0=Prev 1=Next
 				}
@@ -50,7 +50,7 @@ jQuery(document).ready(function($){
 				if( activePosition < selectedPosition) {
 					nextSlide(slidesWrapper.find('.selected'), slidesWrapper, sliderNav, selectedPosition);
 					history.pushState({page_no:selectedPosition, slideTransition:1},"") //Slide Transition 0=Prev 1=Next
-				} else {
+				} else if( activePosition > selectedPosition){
 					prevSlide(slidesWrapper.find('.selected'), slidesWrapper, sliderNav, selectedPosition);
 					history.pushState({page_no:selectedPosition, slideTransition:0},"") //Slide Transition 0=Prev 1=Next
 				}
