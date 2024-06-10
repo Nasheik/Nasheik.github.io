@@ -1,3 +1,4 @@
+//slideTransition 0=Prev 1=Next
 jQuery(document).ready(function($){
 	var slidesWrapper = $('.cd-hero-slider');
 
@@ -30,10 +31,12 @@ jQuery(document).ready(function($){
 					activePosition = slidesWrapper.find('li.selected').index();
 				if( activePosition < selectedPosition) {
 					nextSlide(slidesWrapper.find('.selected'), slidesWrapper, sliderNav, selectedPosition);
+					history.pushState({page_no:selectedPosition, slideTransition:1},"") //Slide Transition 0=Prev 1=Next
 				} else {
 					prevSlide(slidesWrapper.find('.selected'), slidesWrapper, sliderNav, selectedPosition);
+					history.pushState({page_no:selectedPosition, slideTransition:0},"") //Slide Transition 0=Prev 1=Next
 				}
-				updateSliderNavigation(sliderNav, selectedPosition);
+			updateSliderNavigation(sliderNav, selectedPosition);
 		});
 
 		//change visible slide
@@ -46,8 +49,10 @@ jQuery(document).ready(function($){
 				
 				if( activePosition < selectedPosition) {
 					nextSlide(slidesWrapper.find('.selected'), slidesWrapper, sliderNav, selectedPosition);
+					history.pushState({page_no:selectedPosition, slideTransition:1},"") //Slide Transition 0=Prev 1=Next
 				} else {
 					prevSlide(slidesWrapper.find('.selected'), slidesWrapper, sliderNav, selectedPosition);
+					history.pushState({page_no:selectedPosition, slideTransition:0},"") //Slide Transition 0=Prev 1=Next
 				}
 				updateSliderNavigation(sliderNav, selectedPosition);
 		});
@@ -61,12 +66,39 @@ jQuery(document).ready(function($){
 				return;
 			}
 
+			history.pushState({page_no:selectedPosition, slideTransition:1},"") //Slide Transition 0=Prev 1=Next
 			console.log(selectedPosition)			
 
 			nextSlide(slidesWrapper.find('li.selected'), slidesWrapper, sliderNav, selectedPosition);
 			updateSliderNavigation(sliderNav, selectedPosition);
 		});
 	}
+
+	//On State Change
+	$(window).on('popstate', function (e) {
+		var state = e.originalEvent.state;
+		console.log(state)
+		if (state == null) {
+			var selectedPosition = 0
+			prevSlide(slidesWrapper.find('.selected'), slidesWrapper, sliderNav, selectedPosition);
+			updateSliderNavigation(sliderNav, selectedPosition);
+		}
+		else{
+			var selectedPosition = state["page_no"]
+			var transition = state["slideTransition"]
+			if(selectedPosition<=1){
+				if(transition==0)
+					prevSlide(slidesWrapper.find('.selected'), slidesWrapper, sliderNav, selectedPosition);
+				else
+					nextSlide(slidesWrapper.find('.selected'), slidesWrapper, sliderNav, selectedPosition);
+			}
+			else{
+				nextSlide(slidesWrapper.find('li.selected'), slidesWrapper, sliderNav, selectedPosition);
+			}
+			updateSliderNavigation(sliderNav, selectedPosition);
+		}
+	});
+
 
 	function nextSlide(visibleSlide, container, pagination, n){
 		visibleSlide.removeClass('selected from-left from-right').addClass('is-moving').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
